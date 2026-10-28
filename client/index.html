@@ -1,25 +1,89 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Réservation de Billets de Train</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
-    h1 { color: #2c3e50; }
-    .search-box { background: white; padding: 20px; border-radius: 8px; max-width: 400px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .form-group { margin-bottom: 15px; }
-    label { display: block; margin-bottom: 5px; font-weight: bold; }
-    input, select { width: 100%; padding: 8px; box-sizing: border-box; }
-    button { background: #27ae60; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
-    button:hover { background: #219150; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billetterie Train - Projet Agile</title>
+    <style>
+        /* Design moderne intégré */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .search-box {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-size: 14px;
+        }
+
+        input, select {
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input:focus, select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #219653;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>Rechercher un billet de train</h1>
-
   <div class="search-box">
+    <h2>🚆 Rechercher un billet de train</h2>
+    
     <form id="searchForm">
       <div class="form-group">
         <label for="departure">Gare de départ :</label>
@@ -38,16 +102,34 @@
 
       <button type="submit">Rechercher les trains</button>
     </form>
+
+    <!-- Conteneur pour afficher les résultats dynamiques -->
+    <div id="resultsContainer" style="margin-top: 20px;"></div>
   </div>
-document.getElementById('searchForm').addEventListener('submit', function(e) {
-  e.preventDefault(); // Empêche la page de se recharger
 
-  const departure = document.getElementById('departure').value;
-  const arrival = document.getElementById('arrival').value;
-  const date = document.getElementById('date').value;
+  <!-- Le code JavaScript est maintenant bien rangé et exécuté par le navigateur -->
+  <script>
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Empêche la page de se recharger
 
-  // Affichage d'une alerte simple pour valider la recherche
-  alert(`Recherche en cours de ${departure} vers ${arrival} le ${date} !`);
-});
+      const departure = document.getElementById('departure').value;
+      const arrival = document.getElementById('arrival').value;
+      const date = document.getElementById('date').value;
+
+      let resultsDiv = document.getElementById('resultsContainer');
+      resultsDiv.innerHTML = `
+        <h3 style="font-size: 18px; color: #2c3e50; margin-top: 20px;">Trains disponibles (${departure} ➔ ${arrival} le ${date}) :</h3>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="background: #e8f8f5; padding: 12px; border-radius: 6px; border-left: 4px solid #27ae60;">
+            <strong>TGV 1042</strong> — 08:30 ➔ 11:15 (45 €)
+          </div>
+          <div style="background: #e8f8f5; padding: 12px; border-radius: 6px; border-left: 4px solid #27ae60;">
+            <strong>TGV 1088</strong> — 12:15 ➔ 15:00 (60 €)
+          </div>
+        </div>
+      `;
+    });
+  </script>
+
 </body>
 </html>
