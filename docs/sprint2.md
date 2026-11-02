@@ -13,8 +13,8 @@ Permettre à l'utilisateur de sélectionner un train parmi les résultats de rec
 ---
 
 ## 📦 User Stories incluses dans ce Sprint
-* **US03 :** Sélection du voyage et choix de la classe (1ère / 2nde). $\rightarrow$ **En cours**
-* **US04 :** Paiement et simulation de réservation finale. $\rightarrow$ **À faire**
+* **US03 :** Sélection du voyage et choix de la classe (1ère / 2nde). $\rightarrow$ **Terminé**
+* **US04 :** Paiement et simulation de réservation finale. $\rightarrow$ **Terminé**
 
 ---
 

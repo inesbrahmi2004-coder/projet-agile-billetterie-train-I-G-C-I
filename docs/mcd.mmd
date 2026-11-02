@@ -1,0 +1,70 @@
+erDiagram
+    GARE ||--o{ VOYAGE : "PART_DE"
+    GARE ||--o{ VOYAGE : "ARRIVE_A"
+    VOYAGE ||--o{ BILLET : "CONCERNE"
+    RESERVATION ||--|{ BILLET : "COMPREND (1 a 2)"
+    CLIENT ||--|{ RESERVATION : "EFFECTUE"
+    RESERVATION ||--o{ RESERVATION_OPTION : "CONTIENT"
+    OPTION_VOYAGE ||--o{ RESERVATION_OPTION : "CONTIENT"
+    UTILISATEUR |o--o{ RESERVATION : "BENEFICIE"
+    CODE_PROMO |o--o{ RESERVATION : "APPLIQUE"
+    GARE { int id_gare PK
+      string nom
+      string ville }
+    VOYAGE { int id_voyage PK
+      string numero_train
+      int id_gare_depart FK
+      int id_gare_arrivee FK
+      date date_depart
+      time heure_depart
+      time heure_arrivee
+      decimal prix
+      int places_dispo }
+    OPTION_VOYAGE { int id_option PK
+      string code
+      string libelle
+      decimal prix }
+    CLIENT { int id_client PK
+      enum civilite
+      string nom
+      string prenom
+      string telephone
+      string email }
+    RESERVATION { int id_reservation PK
+      string reference
+      datetime date_reservation
+      int id_client FK
+      int id_utilisateur FK
+      string code_promo FK
+      decimal montant_brut
+      decimal remise
+      decimal montant_total
+      char cb_4_derniers
+      enum statut }
+    BILLET { int id_billet PK
+      string numero_billet
+      int id_reservation FK
+      int id_voyage FK
+      enum sens
+      decimal prix
+      int voiture
+      int place }
+    RESERVATION_OPTION { int id_reservation PK,FK
+      int id_option PK,FK
+      decimal prix_applique }
+    UTILISATEUR { int id_utilisateur PK
+      string login
+      string mot_de_passe
+      enum role
+      string nom
+      string prenom
+      string email
+      string numero_carte
+      date date_fin_carte
+      int nb_echecs
+      datetime bloque_jusqu }
+    CODE_PROMO { string code PK
+      decimal montant_reduction
+      bool reserve_adherents
+      date date_fin
+      bool actif }
